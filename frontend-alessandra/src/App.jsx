@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";  // <-- Importa el CSS
 
 function App() {
   const apiUrl = "http://52.201.187.123:8000";
@@ -9,7 +10,7 @@ function App() {
 
   useEffect(() => {
     cargarLibros();
-    fetch(`${apiUrl}/ulloa`)  // Cambia 'perez' por tu apellido
+    fetch(`${apiUrl}/ulloa`)
       .then(r => r.json())
       .then(d => setNombre(d.nombreCompleto));
   }, []);
@@ -42,19 +43,24 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial" }}>
-      <h1>📚 Librería de {nombre}</h1>
-      <div>
+    <div className="container">
+      <h1 className="title">📚 Librería de {nombre}</h1>
+
+      <div className="form">
         <input placeholder="Título" value={form.titulo} onChange={e => setForm({ ...form, titulo: e.target.value })} />
         <input placeholder="Autor" value={form.autor} onChange={e => setForm({ ...form, autor: e.target.value })} />
-        <input placeholder="Año" value={form.anio} onChange={e => setForm({ ...form, anio: e.target.value })} type="number" />
-        <button onClick={guardarLibro}>{editId ? "Actualizar" : "Agregar"}</button>
+        <input placeholder="Año" type="number" value={form.anio} onChange={e => setForm({ ...form, anio: e.target.value })} />
+        <button className="button" onClick={guardarLibro}>{editId ? "Actualizar" : "Agregar"}</button>
       </div>
 
-      <table border="1" cellPadding="5" style={{ marginTop: 20 }}>
+      <table className="table">
         <thead>
           <tr>
-            <th>ID</th><th>Título</th><th>Autor</th><th>Año</th><th>Acciones</th>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -64,9 +70,9 @@ function App() {
               <td>{l.titulo}</td>
               <td>{l.autor}</td>
               <td>{l.anio}</td>
-              <td>
-                <button onClick={() => editarLibro(l)}>Editar</button>
-                <button onClick={() => eliminarLibro(l.id)}>Eliminar</button>
+              <td className="action-buttons">
+                <button className="button" onClick={() => editarLibro(l)}>Editar</button>
+                <button className="button-danger" onClick={() => eliminarLibro(l.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
