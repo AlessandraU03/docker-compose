@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.libro import Libro
-from app.schemas.libro import LibroCreate
+from models.libro import Libro
+from schemas.libro import LibroCreate
 
 def get_libros(db: Session):
     return db.query(Libro).all()

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import libro
-from app.core.config import TUNOMBRE, TUAPELLIDO
-from app.core.database import Base, engine
+from routers import libro
+from core.config import TUNOMBRE, TUAPELLIDO
+from core.database import Base, engine
 
 # Crear tablas si no existen
 Base.metadata.create_all(bind=engine)

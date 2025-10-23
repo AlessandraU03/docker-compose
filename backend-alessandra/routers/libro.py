@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.schemas.libro import LibroCreate, LibroResponse
-from app.crud import libro as crud
+from core.database import SessionLocal
+from schemas.libro import LibroCreate, LibroResponse
+from crud import libro as crud
 
 router = APIRouter(prefix="/api/libros", tags=["Libros"])
 
