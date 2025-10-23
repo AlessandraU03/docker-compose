@@ -22,7 +22,7 @@ services:
     container_name: backend-ulloa
     restart: unless-stopped
     environment:
-      DB_HOST: db-ulloa
+      DB_HOST: 52.201.187.123
       DB_PORT: 3306
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
