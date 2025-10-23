@@ -18,7 +18,7 @@ services:
       - backend-net
 
   backend-ulloa:
-    build: ./backend
+    build: ./backend-alessandra
     container_name: backend-ulloa
     restart: unless-stopped
     environment:
@@ -38,7 +38,7 @@ services:
       - frontend-net
 
   frontend-ulloa:
-    build: ./frontend
+    build: ./frontend-alessandra
     container_name: frontend-ulloa
     restart: unless-stopped
     environment:
