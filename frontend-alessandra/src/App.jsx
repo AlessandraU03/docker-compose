@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function App() {
-  const apiUrl = "http://localhost:8000";
+  const apiUrl = "http://52.201.187.123:8000";
   const [libros, setLibros] = useState([]);
   const [form, setForm] = useState({ titulo: "", autor: "", anio: "" });
   const [editId, setEditId] = useState(null);
