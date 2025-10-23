@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db-ulloa:
+    image: mysql:8.1
+    container_name: db-ulloa
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - backend-net
+
+  backend-ulloa:
+    build: ./backend
+    container_name: backend-ulloa
+    restart: unless-stopped
+    environment:
+      DB_HOST: db-ulloa
+      DB_PORT: 3306
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      TUNOMBRE: ${TUNOMBRE}
+      ulloa: ${ulloa}
+    depends_on:
+      - db-ulloa
+    ports:
+      - "8000:8000"
+    networks:
+      - backend-net
+      - frontend-net
+
+  frontend-ulloa:
+    build: ./frontend
+    container_name: frontend-ulloa
+    restart: unless-stopped
+    environment:
+      REACT_APP_API_URL: "http://backend-ulloa:8000"
+    depends_on:
+      - backend-ulloa
+    ports:
+      - "3000:3000"
+    networks:
+      - frontend-net
+
+volumes:
+  db_data:
+    name: ulloa_db_data
+
+networks:
+  backend-net:
+    driver: bridge
+  frontend-net:
+    driver: bridge
