@@ -29,9 +29,9 @@ app.add_middleware(
 def root():
     return {"mensaje": f"Librería de {TUNOMBRE} {TUAPELLIDO}"}
 
-@app.get(f"/{TUAPELLIDO.lower()}")
+@app.get("/ulloa")
 def nombre_completo():
-    return {"nombreCompleto": f"{TUNOMBRE} {TUAPELLIDO}"}
+    return {"nombreCompleto": "Alessandra Guadalupe Ulloa López"}
 
 # Registrar router de libros
 app.include_router(libro.router)
